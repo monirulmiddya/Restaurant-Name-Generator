@@ -1,10 +1,12 @@
-from dotenv import dotenv_values
-
-# Load variables from the .env file
-env_variables = dotenv_values(".env")
-# Access specific variables
-openai_api_key = env_variables.get("OPENAI_API_KEY")
+from dotenv import load_dotenv
 import os
+import sys
+
+# Load environment variables from .env
+load_dotenv()
+
+# Retrieve the API key from the environment
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 os.environ["OPENAI_API_KEY"] = openai_api_key
 from langchain.llms import OpenAI
