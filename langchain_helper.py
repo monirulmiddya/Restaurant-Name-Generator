@@ -1,19 +1,13 @@
 from dotenv import load_dotenv
 import os
-import sys
-
-# Load environment variables from .env
 load_dotenv()
-
-# Retrieve the API key from the environment
-openai_api_key = os.getenv("OPENAI_API_KEY")
-
-os.environ["OPENAI_API_KEY"] = openai_api_key
-from langchain.llms import OpenAI
+from langchain.llms import GooglePalm
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
 
-llm = OpenAI(temperature=0.6)
+google_api_key = os.getenv("GOOGLE_API_KEY")
+
+llm = GooglePalm(google_api_key=google_api_key, temperature=0.6)
 
 
 def generate_resturant_name_and_menu_items(cuisine):

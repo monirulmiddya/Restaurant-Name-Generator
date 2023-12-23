@@ -1,16 +1,14 @@
-from dotenv import dotenv_values
-
-# Load variables from the .env file
-env_variables = dotenv_values(".env")
-# Access specific variables
-openai_api_key = env_variables.get("OPENAI_API_KEY")
+from dotenv import load_dotenv
+load_dotenv()
 import os
-os.environ["OPENAI_API_KEY"] = openai_api_key
-from langchain.llms import OpenAI
+from langchain.llms import GooglePalm
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SimpleSequentialChain, SequentialChain
 
-llm = OpenAI(temperature=0.6)
+google_api_key = os.getenv("GOOGLE_API_KEY")
+
+llm = GooglePalm(google_api_key=google_api_key, temperature=0.6)
+
 # name = llm(
 #     "I want to open a resturant for indian food . Suggest a fency name for this."
 # )
